@@ -24,7 +24,7 @@ ENV PHPIZE_DEPS \
 		pkg-config \
 		re2c
    
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y  \
     $PHPIZE_DEPS \
     ca-certificates \
     curl \
