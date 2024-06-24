@@ -38,7 +38,7 @@ COPY --from=intermediate /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 /lib/x86_64-
 COPY --from=intermediate /usr/lib/x86_64-linux-gnu/libc_nonshared.a /usr/lib/x86_64-linux-gnu/
 COPY --from=intermediate /usr/include/ /usr/include/
    
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     $PHPIZE_DEPS \
     ca-certificates \
     curl \
