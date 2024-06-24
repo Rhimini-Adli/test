@@ -1,3 +1,13 @@
+FROM debian:10.1-slim as intermediate
+ 
+# Set the frontend to noninteractive to avoid prompts
+ENV DEBIAN_FRONTEND=noninteractive
+ 
+# Install the specific version of libc6 and libc6-dev
+RUN apt-get update \
+&& apt-get install -y libc6 libc6-dev \
+&& rm -rf /var/lib/apt/lists/*
+
 #
 # PHP_VERSION 7.3
 #
@@ -19,11 +29,15 @@ ENV PHPIZE_DEPS \
 		file \
 		g++ \
 		gcc \
-    libc-dev \
 		make \
 		pkg-config \
 		re2c
-  
+# Copy the installed packages from the intermediate stage
+COPY --from=intermediate /lib/x86_64-linux-gnu/libc.so.6 /lib/x86_64-linux-gnu/
+COPY --from=intermediate /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 /lib/x86_64-linux-gnu/
+COPY --from=intermediate /usr/lib/x86_64-linux-gnu/libc_nonshared.a /usr/lib/x86_64-linux-gnu/
+COPY --from=intermediate /usr/include/ /usr/include/
+   
 RUN apt-get update && apt-get install -y \
     $PHPIZE_DEPS \
     ca-certificates \
