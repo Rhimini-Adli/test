@@ -7,6 +7,13 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from SCM (e.g., Git)
+                checkout scm
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
