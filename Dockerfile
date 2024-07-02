@@ -68,7 +68,7 @@ RUN wget -qO /tmp/apt.gpg https://packages.sury.org/php/apt.gpg && \
     apt-key add /tmp/apt.gpg
 
 # Add the Sury repository for PHP 5.6
-RUN echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list/php.list
+RUN echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list
 
 RUN apt-get update && apt-get install -y \
    \
