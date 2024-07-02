@@ -67,8 +67,8 @@ RUN apt-get update && apt-get install -y \
 #RUN wget -qO /tmp/apt.gpg https://packages.sury.org/php/apt.gpg && \
 #    apt-key add /tmp/apt.gpg
 
-sudo echo "deb http://packages.dotdeb.org $(lsb_release -cs) all" | sudo tee -a /etc/apt/sources.list.d/dotdeb.list
-sudo wget -qO- https://www.dotdeb.org/dotdeb.gpg | sudo apt-key add -
+RUN sudo echo "deb http://packages.dotdeb.org $(lsb_release -cs) all" | sudo tee -a /etc/apt/sources.list.d/dotdeb.list
+RUN sudo wget -qO- https://www.dotdeb.org/dotdeb.gpg | sudo apt-key add -
 
 # Add the Sury repository for PHP 5.6
 RUN echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list
