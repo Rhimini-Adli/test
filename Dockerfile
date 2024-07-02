@@ -2,7 +2,7 @@
 # PHP_VERSION 5.6
 #
 #FROM debian:stretch-slim
-FROM debian:10.1-slim
+FROM debian:11-slim
 
 
 
