@@ -62,7 +62,7 @@ RUN apt-get update && apt-get install -y \
     nginx
 
 # Add the Sury repository for PHP 7.3
-RUN sudo wget -O - https://packages.sury.org/php/apt.gpg | sudo gpg --dearmor | sudo tee /usr/share/keyrings/suryphp-archive-keyring.gpg && \
+RUN wget -O- https://packages.sury.org/php/apt.gpg | apt-key add - && \
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 
 
